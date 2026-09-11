@@ -11,7 +11,7 @@ from components import (
 render_session_header(
     3,
     "Data Governance",
-    "20 min",
+    "10 min",
     "Roles, dynamic data masking, and Snowflake Horizon governance on Iceberg data",
 )
 

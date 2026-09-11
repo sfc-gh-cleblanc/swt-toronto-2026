@@ -11,7 +11,7 @@ from components import (
 render_session_header(
     2,
     "Query Iceberg Data",
-    "10 min",
+    "5 min",
     "SQL queries against Iceberg tables in AWS Glue — zero data movement",
 )
 

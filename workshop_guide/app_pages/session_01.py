@@ -11,7 +11,7 @@ from components import (
 render_session_header(
     1,
     "Create Snowflake Objects",
-    "15 min",
+    "5 min",
     "External Volume, Catalog Integration, and Catalog-Linked Database",
 )
 

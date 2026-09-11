@@ -11,7 +11,7 @@ from components import (
 render_session_header(
     4,
     "Semantic View",
-    "15 min",
+    "10 min",
     "Business metrics and dimensions for AI-ready analytics on Iceberg data",
 )
 

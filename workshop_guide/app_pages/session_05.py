@@ -11,7 +11,7 @@ from components import (
 render_session_header(
     5,
     "Natural Language Queries",
-    "15 min",
+    "10 min",
     "Cortex Agent and Snowflake CoWork for conversational analytics on your data lake",
 )
 
