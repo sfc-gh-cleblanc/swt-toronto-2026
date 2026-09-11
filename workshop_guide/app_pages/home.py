@@ -73,7 +73,7 @@ st.markdown("#### Prerequisites")
 with st.container(border=True):
     st.markdown("""
 - Snowflake Enterprise account with **ACCOUNTADMIN** role — see **Getting Started** for free trial setup
-- Account deployed in **AWS US West 2 (Oregon)** — the lab infrastructure is in this region
+- Account deployed in **AWS US East 2 (Ohio)** — the lab infrastructure is in this region
 - A modern web browser for Snowsight
 """)
 

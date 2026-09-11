@@ -16,10 +16,10 @@ with st.container(border=True):
 1. Go to [signup.snowflake.com/summit2026](https://signup.snowflake.com/summit2026)
 2. Select the **AI Data Cloud for Enterprise** option
 3. Choose **Amazon Web Services** as the cloud provider
-4. Choose **US West (Oregon)** as the region
+4. Choose **US East (Ohio)** as the region
 
 > **Important:** The lab infrastructure (S3 bucket, Glue catalog, IAM role) is deployed in
-> **AWS US West 2 (Oregon)**. Your Snowflake account must be in the same region to reach it.
+> **AWS US East 2 (Ohio)**. Your Snowflake account must be in the same region to reach it.
 """)
 
 st.write("")
