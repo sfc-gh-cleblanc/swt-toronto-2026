@@ -46,8 +46,9 @@ st.write("")
 render_coco_prompt(
     "2.1",
     "Explore the Table",
-    "Show me the first 10 rows from the quotes table in my_iceberg_db and then give me the total row count. "
-    'Remember the schema and table names are lowercase in Glue — use double quotes like "iceberg"."quotes".',
+    "Create a blank sql sheet if the current one isn't blank. Add the necessary SQL to show me the first 10 rows from the quotes table in my_iceberg_db and give me the total row count. "
+    "Remember to set context for the sheet and note that the schema and table names are lowercase in Glue so ensure to use double quotes like "
+    '"iceberg"."quotes".',
     sql="""\
 -- Preview the first 10 rows
 SELECT * FROM my_iceberg_db."iceberg"."quotes" LIMIT 10;
