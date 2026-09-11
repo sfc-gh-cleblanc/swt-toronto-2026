@@ -67,8 +67,12 @@ def render_coco_prompt(block_id: str, title: str, prompt_text: str, sql: str = "
         if note:
             st.caption(note)
         if sql:
-            with st.expander(":material/code: SQL that CoCo will generate and run", expanded=False):
+            with st.expander(":material/code: SQL that CoCo will generate", expanded=False):
                 st.code(sql, language="sql", wrap_lines=True)
+                st.markdown(
+                    "**Next step:** Place your cursor on each SQL statement in the worksheet and press "
+                    "`Ctrl + Enter` (Windows/Linux) or `Cmd + Return` (Mac) to run it interactively and see the results."
+                )
 
 
 def render_explanation(title: str, body: str):
