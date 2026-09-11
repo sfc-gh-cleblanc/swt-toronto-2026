@@ -14,6 +14,7 @@ with st.container(border=True):
 
     st.markdown("""
 1. Go to [signup.snowflake.com](https://signup.snowflake.com/?t=612344c843109dd7e4235d855aa00cb626979d51b072e87b10b3813d4ae0ff12&cloud=aws&region=us-east-2)
+2. Enter your **name**, **email**, **company**, and **title**, then click **Sign Up**
 
 > **Important:** You must use the link above — do not type the address manually.
 > This link provisions a trial account with **Cortex AI capabilities enabled** and
