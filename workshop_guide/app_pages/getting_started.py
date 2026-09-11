@@ -13,13 +13,12 @@ with st.container(border=True):
     col3.metric("Credit card", "Not required")
 
     st.markdown("""
-1. Go to [signup.snowflake.com/summit2026](https://signup.snowflake.com/summit2026)
-2. Select the **AI Data Cloud for Enterprise** option
-3. Choose **Amazon Web Services** as the cloud provider
-4. Choose **US East (Ohio)** as the region
+1. Go to [signup.snowflake.com](https://signup.snowflake.com/?t=612344c843109dd7e4235d855aa00cb626979d51b072e87b10b3813d4ae0ff12&cloud=aws&region=us-east-2)
 
-> **Important:** The lab infrastructure (S3 bucket, Glue catalog, IAM role) is deployed in
-> **AWS US East 2 (Ohio)**. Your Snowflake account must be in the same region to reach it.
+> **Important:** You must use the link above — do not type the address manually.
+> This link provisions a trial account with **Cortex AI capabilities enabled** and
+> pre-selects **AWS US East 2 (Ohio)**, which is required because the lab infrastructure
+> (S3 bucket, Glue catalog, IAM role) is deployed in this region.
 """)
 
 st.write("")
