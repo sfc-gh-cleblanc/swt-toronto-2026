@@ -24,12 +24,12 @@ with st.container(border=True):
 
 st.write("")
 
-st.markdown("#### Step 2: Activate your account")
+st.markdown("#### Step 2: Activate your account and log in")
 with st.container(border=True):
     st.markdown("""
 1. Check your email for the activation link
 2. Click the link and set your password
-3. Log in to [app.snowflake.com](https://app.snowflake.com/)
+3. Log in to Snowflake using the link provided in the email
 """)
 
 st.write("")
@@ -39,8 +39,7 @@ with st.container(border=True):
     st.markdown("""
 Session 1 uses direct SQL in a **Snowsight worksheet**:
 
-1. Log in to [app.snowflake.com](https://app.snowflake.com/)
-2. Click **Projects** in the left nav, then **Worksheets**
+1. Click **Projects** in the left nav, then **Worksheets**
 3. Click **+** (top right) to create a new SQL worksheet
 4. Set your role to **ACCOUNTADMIN** using the role picker in the top-left corner
 5. Set your warehouse to **COMPUTE_WH** (or the warehouse available in your account)
