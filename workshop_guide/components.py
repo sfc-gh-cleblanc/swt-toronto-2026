@@ -64,8 +64,6 @@ def render_coco_prompt(block_id: str, title: str, prompt_text: str, sql: str = "
             st.checkbox("Done", key=cb_key, on_change=_on_toggle, args=(block_id,))
         st.caption("Copy this prompt and paste it into CoCo")
         st.code(prompt_text, language="text", wrap_lines=True)
-        if note:
-            st.caption(note)
         if sql:
             with st.expander(":material/code: SQL that CoCo will generate", expanded=False):
                 st.code(sql, language="sql", wrap_lines=True)
@@ -73,6 +71,8 @@ def render_coco_prompt(block_id: str, title: str, prompt_text: str, sql: str = "
             "Place your cursor on each SQL statement in the worksheet and press "
             "`Ctrl + Enter` (Windows/Linux) or `Cmd + Return` (Mac) to run it interactively and see the results."
         )
+        if note:
+            st.caption(note)
 
 
 def render_explanation(title: str, body: str):
