@@ -5,7 +5,7 @@ _STATIC = Path(__file__).parent.parent / "static"
 
 col_logo, col_leaf = st.columns([1, 1])
 with col_logo:
-    st.image(str(_STATIC / "snowflake_full_logo.png"), width=260)
+    st.image(str(_STATIC / "snowflake_world_tour.png"), width=300)
 with col_leaf:
     st.image(str(_STATIC / "maple_leaf.svg"), width=80)
 
