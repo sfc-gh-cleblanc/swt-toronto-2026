@@ -1,7 +1,16 @@
 import streamlit as st
+from pathlib import Path
+
+_STATIC = Path(__file__).parent.parent / "static"
+
+col_logo, col_leaf = st.columns([1, 1])
+with col_logo:
+    st.image(str(_STATIC / "snowflake_full_logo.png"), width=260)
+with col_leaf:
+    st.image(str(_STATIC / "maple_leaf.svg"), width=80)
 
 st.title("Power Analytics and AI Wherever Your Data Lives")
-st.markdown("Snowflake World Tour Canada — Hands-On Lab")
+st.markdown("Snowflake World Tour Toronto — Hands-On Lab")
 
 st.write("")
 
@@ -78,4 +87,4 @@ with st.container(border=True):
 """)
 
 st.write(""); st.write("")
-st.caption("Power Analytics and AI Wherever Your Data Lives — Snowflake World Tour Canada")
+st.caption("Power Analytics and AI Wherever Your Data Lives — Snowflake World Tour Toronto")
