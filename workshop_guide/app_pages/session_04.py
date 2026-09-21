@@ -63,6 +63,7 @@ render_coco_prompt(
     "avg_risk_premium (AVG newriskpremium), total_premium_volume (SUM totalpremiumpayable).\n\n"
     "Add a comment: 'Insurance quote analytics on Iceberg data in AWS Glue via Catalog-Linked Database'.",
     sql="""\
+USE ROLE ACCOUNTADMIN;
 USE DATABASE iceberg_lab_db;
 USE SCHEMA analytics;
 
