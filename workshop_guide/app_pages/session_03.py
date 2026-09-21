@@ -214,7 +214,7 @@ CREATE OR REPLACE MASKING POLICY mask_email
       ELSE CONCAT(LEFT(val, 1), '***@***.', SPLIT_PART(val, '.', -1))
     END;
 
--- Phone: 07123456789 -> 071*****789
+-- Phone: 07xxxxxxxxx -> 071*****789
 CREATE OR REPLACE MASKING POLICY mask_phone
   AS (val STRING) RETURNS STRING ->
     CASE
