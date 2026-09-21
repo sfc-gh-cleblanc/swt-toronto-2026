@@ -220,21 +220,22 @@ render_coco_prompt(
     "- mask_phone on the phonenumber column\n"
     "- mask_surname on the surname column\n"
     "- mask_dob on the dateofbirth column\n\n"
-    "Use ALTER VIEW ... ALTER COLUMN ... SET MASKING POLICY for each.",
+    "Use ALTER VIEW ... ALTER COLUMN ... SET MASKING POLICY for each. "
+    "The column names are lowercase (inherited from Glue) so wrap them in double quotes, e.g. ALTER COLUMN \"email\".",
     sql="""\
 USE ROLE ACCOUNTADMIN;
 
 ALTER VIEW iceberg_lab_db.analytics.quotes_vw
-  ALTER COLUMN email SET MASKING POLICY iceberg_lab_db.analytics.mask_email;
+  ALTER COLUMN "email" SET MASKING POLICY iceberg_lab_db.analytics.mask_email;
 
 ALTER VIEW iceberg_lab_db.analytics.quotes_vw
-  ALTER COLUMN phonenumber SET MASKING POLICY iceberg_lab_db.analytics.mask_phone;
+  ALTER COLUMN "phonenumber" SET MASKING POLICY iceberg_lab_db.analytics.mask_phone;
 
 ALTER VIEW iceberg_lab_db.analytics.quotes_vw
-  ALTER COLUMN surname SET MASKING POLICY iceberg_lab_db.analytics.mask_surname;
+  ALTER COLUMN "surname" SET MASKING POLICY iceberg_lab_db.analytics.mask_surname;
 
 ALTER VIEW iceberg_lab_db.analytics.quotes_vw
-  ALTER COLUMN dateofbirth SET MASKING POLICY iceberg_lab_db.analytics.mask_dob;""",
+  ALTER COLUMN "dateofbirth" SET MASKING POLICY iceberg_lab_db.analytics.mask_dob;""",
     note="Masking is enforced whenever the view is queried — in SQL, via the semantic view, or through the agent.",
 )
 
@@ -249,13 +250,13 @@ render_coco_prompt(
     sql="""\
 -- As analyst: PII is masked
 USE ROLE lab_analyst;
-SELECT uuid, surname, email, phonenumber, dateofbirth, totalpremiumpayable
+SELECT "uuid", "surname", "email", "phonenumber", "dateofbirth", "totalpremiumpayable"
 FROM iceberg_lab_db.analytics.quotes_vw
 LIMIT 5;
 
 -- As data engineer: full values visible
 USE ROLE lab_data_engineer;
-SELECT uuid, surname, email, phonenumber, dateofbirth, totalpremiumpayable
+SELECT "uuid", "surname", "email", "phonenumber", "dateofbirth", "totalpremiumpayable"
 FROM iceberg_lab_db.analytics.quotes_vw
 LIMIT 5;""",
     note="Run both queries and compare — the same Iceberg data, governed entirely by Snowflake.",
