@@ -121,27 +121,74 @@ render_coco_prompt(
     "3.3",
     "Create View Wrapper",
     "Create a database called iceberg_lab_db with a schema called analytics. "
-    "Then create a view called quotes_vw in that schema that selects all columns from my_iceberg_db.\"iceberg\".\"quotes\". "
-    "This view wrapper is needed because masking policies can't be applied directly to CLD tables.",
+    "Then create a view called quotes_vw in that schema that selects all 40 columns from my_iceberg_db.\"iceberg\".\"quotes\", "
+    "aliasing every lowercase Glue column name to its uppercase equivalent — for example \\\"uuid\\\" AS UUID, \\\"quote_product\\\" AS QUOTE_PRODUCT. "
+    "This normalises the lowercase Iceberg/Glue identifiers to standard Snowflake uppercase so that masking policies and the Semantic View work correctly. "
+    "Do not use SELECT * — explicitly alias all 40 columns.",
     sql="""\
 CREATE DATABASE IF NOT EXISTS iceberg_lab_db;
 CREATE SCHEMA IF NOT EXISTS iceberg_lab_db.analytics;
 
 CREATE OR REPLACE VIEW iceberg_lab_db.analytics.quotes_vw AS
-SELECT * FROM my_iceberg_db."iceberg"."quotes";""",
-    note="Masking policies cannot be applied directly to CLD tables — they must be attached to a view.",
+SELECT
+    "uuid"                AS UUID,
+    "quote_product"       AS QUOTE_PRODUCT,
+    "quotedate"           AS QUOTEDATE,
+    "policyno"            AS POLICYNO,
+    "creditscore"         AS CREDITSCORE,
+    "newriskpremium"      AS NEWRISKPREMIUM,
+    "surname"             AS SURNAME,
+    "email"               AS EMAIL,
+    "phonenumber"         AS PHONENUMBER,
+    "dateofbirth"         AS DATEOFBIRTH,
+    "postcodedistrict"    AS POSTCODEDISTRICT,
+    "maritalstatus"       AS MARITALSTATUS,
+    "homeownerind"        AS HOMEOWNERIND,
+    "sex"                 AS SEX,
+    "previnsr"            AS PREVINSR,
+    "vehiclemake"         AS VEHICLEMAKE,
+    "vehiclemodel"        AS VEHICLEMODEL,
+    "vehicleage"          AS VEHICLEAGE,
+    "driverage"           AS DRIVERAGE,
+    "ncd_years"           AS NCD_YEARS,
+    "voluntary_excess"    AS VOLUNTARY_EXCESS,
+    "compulsory_excess"   AS COMPULSORY_EXCESS,
+    "cover_type"          AS COVER_TYPE,
+    "payment_frequency"   AS PAYMENT_FREQUENCY,
+    "annual_mileage"      AS ANNUAL_MILEAGE,
+    "occupation"          AS OCCUPATION,
+    "licence_type"        AS LICENCE_TYPE,
+    "licence_years"       AS LICENCE_YEARS,
+    "claims_count"        AS CLAIMS_COUNT,
+    "convictions_count"   AS CONVICTIONS_COUNT,
+    "address_line1"       AS ADDRESS_LINE1,
+    "city"                AS CITY,
+    "county"              AS COUNTY,
+    "country"             AS COUNTRY,
+    "quote_channel"       AS QUOTE_CHANNEL,
+    "quote_status"        AS QUOTE_STATUS,
+    "renewal_flag"        AS RENEWAL_FLAG,
+    "totalpremiumpayable" AS TOTALPREMIUMPAYABLE,
+    "iptamount"           AS IPTAMOUNT,
+    "quote_record"        AS QUOTE_RECORD
+FROM my_iceberg_db."iceberg"."quotes";""",
+    note="Aliasing to uppercase here means all downstream objects — masking policies, semantic view, and Cortex Agent — use standard Snowflake identifiers without double quotes.",
 )
 
 render_explanation("Why a view wrapper?", """
 Masking policies in Snowflake are attached to **columns on views or tables**. Tables in a
 Catalog-Linked Database are externally managed, so policies cannot be applied to them directly.
 
-The solution: create a thin **view wrapper** (`quotes_vw`) that selects all columns from the
-Iceberg table. Masking policies are then applied to the view's columns. This same view will
-also be used by the Semantic View in Session 4.
+The solution: create a **view wrapper** (`quotes_vw`) that selects all columns from the
+Iceberg table. But there is a second reason to use a view: AWS Glue stores all column names in
+**lowercase** (e.g. `uuid`, `homeownerind`, `totalpremiumpayable`). Snowflake treats unquoted
+identifiers as uppercase, so referencing these columns without double quotes fails.
 
-This is the same pattern used across Canadian financial institutions and insurers that need
-to layer governance on top of external data sources.
+By aliasing every column to uppercase in the view (`"uuid" AS UUID`, `"homeownerind" AS HOMEOWNERIND`),
+all downstream objects — masking policies, the Semantic View, and the Cortex Agent — can reference
+columns using standard unquoted Snowflake identifiers. This is the correct pattern whenever building
+on top of external catalog data (AWS Glue, Unity Catalog, Polaris) that uses lowercase column names.
+""")
 """)
 
 st.write("")
@@ -220,22 +267,21 @@ render_coco_prompt(
     "- mask_phone on the phonenumber column\n"
     "- mask_surname on the surname column\n"
     "- mask_dob on the dateofbirth column\n\n"
-    "Use ALTER VIEW ... ALTER COLUMN ... SET MASKING POLICY for each. "
-    "The column names are lowercase (inherited from Glue) so wrap them in double quotes, e.g. ALTER COLUMN \"email\".",
+    "Use ALTER VIEW ... ALTER COLUMN ... SET MASKING POLICY for each.",
     sql="""\
 USE ROLE ACCOUNTADMIN;
 
 ALTER VIEW iceberg_lab_db.analytics.quotes_vw
-  ALTER COLUMN "email" SET MASKING POLICY iceberg_lab_db.analytics.mask_email;
+  ALTER COLUMN email SET MASKING POLICY iceberg_lab_db.analytics.mask_email;
 
 ALTER VIEW iceberg_lab_db.analytics.quotes_vw
-  ALTER COLUMN "phonenumber" SET MASKING POLICY iceberg_lab_db.analytics.mask_phone;
+  ALTER COLUMN phonenumber SET MASKING POLICY iceberg_lab_db.analytics.mask_phone;
 
 ALTER VIEW iceberg_lab_db.analytics.quotes_vw
-  ALTER COLUMN "surname" SET MASKING POLICY iceberg_lab_db.analytics.mask_surname;
+  ALTER COLUMN surname SET MASKING POLICY iceberg_lab_db.analytics.mask_surname;
 
 ALTER VIEW iceberg_lab_db.analytics.quotes_vw
-  ALTER COLUMN "dateofbirth" SET MASKING POLICY iceberg_lab_db.analytics.mask_dob;""",
+  ALTER COLUMN dateofbirth SET MASKING POLICY iceberg_lab_db.analytics.mask_dob;""",
     note="Masking is enforced whenever the view is queried — in SQL, via the semantic view, or through the agent.",
 )
 
@@ -250,13 +296,13 @@ render_coco_prompt(
     sql="""\
 -- As analyst: PII is masked
 USE ROLE lab_analyst;
-SELECT "uuid", "surname", "email", "phonenumber", "dateofbirth", "totalpremiumpayable"
+SELECT uuid, surname, email, phonenumber, dateofbirth, totalpremiumpayable
 FROM iceberg_lab_db.analytics.quotes_vw
 LIMIT 5;
 
 -- As data engineer: full values visible
 USE ROLE lab_data_engineer;
-SELECT "uuid", "surname", "email", "phonenumber", "dateofbirth", "totalpremiumpayable"
+SELECT uuid, surname, email, phonenumber, dateofbirth, totalpremiumpayable
 FROM iceberg_lab_db.analytics.quotes_vw
 LIMIT 5;""",
     note="Run both queries and compare — the same Iceberg data, governed entirely by Snowflake.",
