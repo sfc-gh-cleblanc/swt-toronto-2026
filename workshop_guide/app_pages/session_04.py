@@ -160,7 +160,28 @@ The AI will use these definitions to translate natural language questions into a
 
 st.markdown("---")
 
-render_key_concepts([
+st.markdown("#### :material/explore: 4.4 — Explore the Semantic View in Snowsight")
+
+with st.container(border=True):
+    st.markdown("""
+Open the semantic view in the Snowsight UI to browse its dimensions, facts, and metrics,
+then try a question in the built-in playground.
+
+1. In the Snowsight left nav, click **AI & ML → Semantic Views**
+2. Find **QUOTES_SV** in the `ICEBERG_LAB_DB.ANALYTICS` schema and click to open it
+3. Browse the **Dimensions** tab — you should see 7 dimensions including `quote_product`, `postcodedistrict`, and `maritalstatus` with their synonyms
+4. Browse the **Facts & Metrics** tab — you should see 4 facts and 4 pre-defined metrics including `total_quotes` and `avg_total_premium`
+5. Click the **Playground** tab at the top of the semantic view
+6. Type the following question in the chat input and press Enter:
+
+> *What are the top 5 insurance products by number of quotes?*
+
+The playground will generate SQL from your question using the semantic view definitions and show the results.
+    """)
+
+st.write("")
+
+
     {
         "term": "Semantic View",
         "definition": "A Snowflake object that overlays business meaning on top of physical tables. Defines facts (numeric columns), dimensions (categorical columns), and metrics (pre-defined calculations). Enables AI to understand and query data in natural language.",
@@ -180,4 +201,5 @@ render_what_you_built([
     "Canadian-friendly synonyms for natural language querying",
     "Grants for both lab roles to query via AI",
     "Verified metrics and dimensions are registered correctly",
+    "Explored the semantic view in Snowsight and tested a natural language question in the playground",
 ])
