@@ -46,6 +46,7 @@ st.write("")
 render_coco_prompt(
     "5.1",
     "Create Cortex Agent",
+    "Create a new worksheet for the Cortex Agent. "
     "Create a Cortex Agent called quotes_agent in iceberg_lab_db.analytics with display name "
     "'Canadian Insurance Quotes Analyst'. It should use a cortex_analyst_text_to_sql tool called "
     "'Query Insurance Quotes' backed by the quotes_sv semantic view.\n\n"

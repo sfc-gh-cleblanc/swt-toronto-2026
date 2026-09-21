@@ -49,6 +49,7 @@ st.write("")
 render_coco_prompt(
     "4.1",
     "Create Semantic View",
+    "Create a new worksheet for the semantic view. "
     "In iceberg_lab_db.analytics, create a semantic view called quotes_sv on top of quotes_vw with uuid as the primary key.\n\n"
     "Facts: newriskpremium (risk premium), totalpremiumpayable (total premium), iptamount (insurance premium tax), "
     "and a quote_record fact set to 1 for counting.\n\n"
