@@ -174,7 +174,7 @@ then try a question in the built-in playground.
 5. Click the **Playground** tab at the top of the semantic view
 6. Type the following question in the chat input and press Enter:
 
-> *What are the top 5 insurance products by number of quotes?*
+> *How many quotes are there by product type?*
 
 The playground will generate SQL from your question using the semantic view definitions and show the results.
     """)
