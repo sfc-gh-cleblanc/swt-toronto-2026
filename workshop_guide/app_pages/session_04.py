@@ -164,19 +164,12 @@ st.markdown("#### :material/explore: 4.4 — Explore the Semantic View in Snowsi
 
 with st.container(border=True):
     st.markdown("""
-Open the semantic view in the Snowsight UI to browse its dimensions, facts, and metrics,
-then try a question in the built-in playground.
+Open the semantic view in the Snowsight UI to browse its dimensions, facts, and metrics.
 
-1. In the Snowsight left nav, click **Analyst → Semantic Views**
+1. In the Snowsight left nav, click **Analyst -> Semantic Views**
 2. Find **QUOTES_SV** in the `ICEBERG_LAB_DB.ANALYTICS` schema and click to open it
-3. Browse the **Dimensions** tab — you should see 7 dimensions including `quote_product`, `postcodedistrict`, and `maritalstatus` with their synonyms
-4. Browse the **Facts & Metrics** tab — you should see 4 facts and 4 pre-defined metrics including `total_quotes` and `avg_total_premium`
-5. Click the **Playground** tab at the top of the semantic view
-6. Type the following question in the chat input and press Enter:
-
-> *How many quotes are there by product type?*
-
-The playground will generate SQL from your question using the semantic view definitions and show the results.
+3. Browse the **Dimensions** tab -- you should see 7 dimensions including `quote_product`, `postcodedistrict`, and `maritalstatus` with their synonyms
+4. Browse the **Facts & Metrics** tab -- you should see 4 facts and 4 pre-defined metrics including `total_quotes` and `avg_total_premium`
     """)
 
 st.write("")
@@ -202,5 +195,5 @@ render_what_you_built([
     "Canadian-friendly synonyms for natural language querying",
     "Grants for both lab roles to query via AI",
     "Verified metrics and dimensions are registered correctly",
-    "Explored the semantic view in Snowsight and tested a natural language question in the playground",
+    "Explored the semantic view in Snowsight -- reviewed dimensions, facts, and metrics",
 ])
