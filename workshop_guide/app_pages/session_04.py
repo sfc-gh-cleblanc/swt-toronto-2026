@@ -51,6 +51,10 @@ render_coco_prompt(
     "Create Semantic View",
     "Create a new worksheet for the semantic view. "
     "In iceberg_lab_db.analytics, create a semantic view called quotes_sv on top of quotes_vw with uuid as the primary key.\n\n"
+    "IMPORTANT: All column names inherited from AWS Glue are lowercase. "
+    "You must wrap every column reference in double quotes in the FACTS, DIMENSIONS, and METRICS clauses "
+    "— for example quotes.\"newriskpremium\" not quotes.newriskpremium. "
+    "Without double quotes Snowflake uppercases the identifier and the semantic view will fail at query time.\n\n"
     "Facts: newriskpremium (risk premium), totalpremiumpayable (total premium), iptamount (insurance premium tax), "
     "and a quote_record fact set to 1 for counting.\n\n"
     "Dimensions: quote_product (synonyms: product type, insurance product, cover type, policy type), "
