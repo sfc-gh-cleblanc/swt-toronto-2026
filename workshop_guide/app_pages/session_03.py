@@ -48,6 +48,7 @@ st.write("")
 render_coco_prompt(
     "3.1",
     "Create Roles",
+    "Create a new worksheet for data governance. "
     "Create two roles: lab_data_engineer and lab_analyst. "
     "Set up a hierarchy where lab_analyst is a subset of lab_data_engineer. "
     "Grant both roles to my current user and give them USAGE on COMPUTE_WH.",
