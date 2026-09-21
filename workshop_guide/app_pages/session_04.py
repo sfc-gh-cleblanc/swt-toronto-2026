@@ -182,6 +182,7 @@ The playground will generate SQL from your question using the semantic view defi
 st.write("")
 
 
+render_key_concepts([
     {
         "term": "Semantic View",
         "definition": "A Snowflake object that overlays business meaning on top of physical tables. Defines facts (numeric columns), dimensions (categorical columns), and metrics (pre-defined calculations). Enables AI to understand and query data in natural language.",
