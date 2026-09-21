@@ -11,7 +11,7 @@ from components import (
 render_session_header(
     5,
     "Natural Language Queries",
-    "10 min",
+    "15 min",
     "Cortex Agent and Agent Studio for conversational analytics on your data lake",
 )
 

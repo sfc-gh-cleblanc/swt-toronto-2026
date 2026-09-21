@@ -9,10 +9,10 @@ st.markdown("#### Session overview")
 
 sessions = [
     ("1", "Create Snowflake Objects", "5 min", "External Volume, Catalog Integration, Catalog-Linked Database"),
-    ("2", "Query Iceberg Data", "5 min", "SQL queries against Iceberg tables in AWS Glue — zero data movement"),
-    ("3", "Data Governance", "10 min", "Roles, dynamic data masking policies on Iceberg data via Snowflake Horizon"),
-    ("4", "Semantic View", "10 min", "Business metrics and dimensions for AI-ready analytics"),
-    ("5", "Natural Language Queries", "10 min", "Cortex Agent and Snowflake CoWork for conversational analytics"),
+    ("2", "Query Iceberg Data", "10 min", "SQL queries against Iceberg tables in AWS Glue -- zero data movement"),
+    ("3", "Data Governance", "15 min", "Roles, dynamic data masking policies on Iceberg data via Snowflake Horizon"),
+    ("4", "Semantic View", "15 min", "Business metrics and dimensions for AI-ready analytics"),
+    ("5", "Natural Language Queries", "15 min", "Cortex Agent and Agent Studio for conversational analytics"),
 ]
 
 for num, title, duration, description in sessions:
@@ -46,7 +46,7 @@ st.markdown("""
 st.write("")
 
 col1, col2 = st.columns(2)
-col1.metric("Total duration", "~40 min")
+col1.metric("Total duration", "~60 min")
 col2.metric("Sessions", "5")
 
 st.write("")
