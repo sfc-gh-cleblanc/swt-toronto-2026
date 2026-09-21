@@ -167,7 +167,7 @@ with st.container(border=True):
 Open the semantic view in the Snowsight UI to browse its dimensions, facts, and metrics,
 then try a question in the built-in playground.
 
-1. In the Snowsight left nav, click **AI & ML → Semantic Views**
+1. In the Snowsight left nav, click **Analyst → Semantic Views**
 2. Find **QUOTES_SV** in the `ICEBERG_LAB_DB.ANALYTICS` schema and click to open it
 3. Browse the **Dimensions** tab — you should see 7 dimensions including `quote_product`, `postcodedistrict`, and `maritalstatus` with their synonyms
 4. Browse the **Facts & Metrics** tab — you should see 4 facts and 4 pre-defined metrics including `total_quotes` and `avg_total_premium`
