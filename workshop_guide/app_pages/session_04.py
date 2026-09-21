@@ -71,29 +71,29 @@ USE SCHEMA analytics;
 CREATE OR REPLACE SEMANTIC VIEW quotes_sv
   TABLES (
     quotes as quotes_vw
-      primary key (uuid)
+      primary key ("uuid")
       comment='Insurance quote requests from the Iceberg data lake in AWS Glue'
   )
   FACTS (
-    quotes.newriskpremium      as newriskpremium      comment='Calculated risk premium',
-    quotes.totalpremiumpayable as totalpremiumpayable comment='Total premium payable',
-    quotes.iptamount           as iptamount           comment='Insurance premium tax',
-    quotes.quote_record        as 1                   comment='One record per quote'
+    quotes."newriskpremium"      as newriskpremium      comment='Calculated risk premium',
+    quotes."totalpremiumpayable" as totalpremiumpayable comment='Total premium payable',
+    quotes."iptamount"           as iptamount           comment='Insurance premium tax',
+    quotes."quote_record"        as 1                   comment='One record per quote'
   )
   DIMENSIONS (
-    quotes.quote_product    as quote_product    with synonyms=('product type', 'insurance product', 'cover type', 'policy type') comment='Insurance product type',
-    quotes.quotedate        as quotedate        with synonyms=('quote date', 'date', 'when requested')             comment='Date the quote was requested',
-    quotes.maritalstatus    as maritalstatus    with synonyms=('marital status', 'married', 'single')              comment='Customer marital status',
-    quotes.homeownerind     as homeownerind     with synonyms=('homeowner', 'owns home', 'property owner')         comment='Whether customer owns home',
-    quotes.sex              as sex              with synonyms=('gender', 'customer gender')                         comment='Customer gender',
-    quotes.postcodedistrict as postcodedistrict with synonyms=('district', 'location', 'area', 'region', 'province', 'postal district') comment='Customer postcode district',
-    quotes.previnsr         as previnsr         with synonyms=('previous insurer', 'prior insurer', 'prior provider')                 comment='Previous insurance provider'
+    quotes."quote_product"    as quote_product    with synonyms=('product type', 'insurance product', 'cover type', 'policy type') comment='Insurance product type',
+    quotes."quotedate"        as quotedate        with synonyms=('quote date', 'date', 'when requested')             comment='Date the quote was requested',
+    quotes."maritalstatus"    as maritalstatus    with synonyms=('marital status', 'married', 'single')              comment='Customer marital status',
+    quotes."homeownerind"     as homeownerind     with synonyms=('homeowner', 'owns home', 'property owner')         comment='Whether customer owns home',
+    quotes."sex"              as sex              with synonyms=('gender', 'customer gender')                         comment='Customer gender',
+    quotes."postcodedistrict" as postcodedistrict with synonyms=('district', 'location', 'area', 'region', 'province', 'postal district') comment='Customer postcode district',
+    quotes."previnsr"         as previnsr         with synonyms=('previous insurer', 'prior insurer', 'prior provider')                 comment='Previous insurance provider'
   )
   METRICS (
-    quotes.total_quotes         as COUNT(quotes.quote_record)      comment='Total number of quote requests',
-    quotes.avg_total_premium    as AVG(quotes.totalpremiumpayable)  comment='Average total premium payable',
-    quotes.avg_risk_premium     as AVG(quotes.newriskpremium)       comment='Average risk premium',
-    quotes.total_premium_volume as SUM(quotes.totalpremiumpayable)  comment='Total premium volume'
+    quotes.total_quotes         as COUNT(quotes."quote_record")      comment='Total number of quote requests',
+    quotes.avg_total_premium    as AVG(quotes."totalpremiumpayable")  comment='Average total premium payable',
+    quotes.avg_risk_premium     as AVG(quotes."newriskpremium")       comment='Average risk premium',
+    quotes.total_premium_volume as SUM(quotes."totalpremiumpayable")  comment='Total premium volume'
   )
   comment='Insurance quote analytics on Iceberg data in AWS Glue via Catalog-Linked Database';""",
 )
