@@ -93,8 +93,8 @@ CREATE OR REPLACE EXTERNAL VOLUME my_iceberg_vol
 with st.container(border=True):
     st.markdown(
         ":material/lightbulb: **Tip: running SQL in your workspace file**  "
-        "Click the **Run** button at the top left of the editor to run all statements. "
-        "You can also use the keyboard shortcut **\u2318 + Shift + Return** (Mac) or **Ctrl + Shift + Enter** (Windows)."
+        "Click the **Run** button at the top left of the editor to execute your SQL. "
+        "You can also use the keyboard shortcut **\u2318 + Return** (Mac) or **Ctrl + Enter** (Windows)."
     )
     st.image(str(_STATIC / "run_button.png"), width=400)
 
