@@ -44,7 +44,7 @@ def render_sql_block(block_id: str, title: str, sql: str, note: str = ""):
             st.markdown(f"#### :material/code: {block_id} — {title}")
         with check_col:
             st.checkbox("Done", key=cb_key, on_change=_on_toggle, args=(block_id,))
-        st.caption("Copy this SQL and run it in your Snowsight worksheet")
+        st.caption("Copy this SQL and run it within your setup.sql page")
         st.code(sql, language="sql", wrap_lines=True)
         if note:
             st.caption(note)
