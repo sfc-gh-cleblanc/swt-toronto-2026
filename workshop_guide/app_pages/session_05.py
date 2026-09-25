@@ -149,10 +149,10 @@ with st.container(border=True):
     st.markdown("""
 Switch between roles to see how masking affects agent responses:
 
-1. In Snowsight, use the **role picker** (top-left) to switch to `lab_analyst`
+1. Click your username **USER** in the bottom-left corner, hover over **Switch Role** near the top of the menu, then select `lab_analyst` from the list
 2. Ask: *"Show me the customers with the highest total premium"*
 3. Notice that `surname`, `email`, `phonenumber`, and `dateofbirth` are **masked**
-4. Switch to `lab_data_engineer` and ask the same question
+4. Switch to `lab_data_engineer` using the same method and ask the same question
 5. Now you see **full PII values**
 
 The same Iceberg data, the same agent, the same question -- governance controls who sees what,
