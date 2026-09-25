@@ -51,7 +51,7 @@ render_coco_prompt(
     "Create a new worksheet for data governance. "
     "Create two roles: lab_data_engineer and lab_analyst. "
     "Set up a hierarchy where lab_analyst is a subset of lab_data_engineer. "
-    "Grant both roles to my current user and give them USAGE on COMPUTE_WH.",
+    "Grant both roles to my current user and give them USAGE on DEFAULT_WH.",
     sql="""\
 USE ROLE ACCOUNTADMIN;
 
@@ -66,8 +66,8 @@ GRANT ROLE lab_data_engineer TO USER IDENTIFIER(CURRENT_USER());
 GRANT ROLE lab_analyst TO USER IDENTIFIER(CURRENT_USER());
 
 -- Grant warehouse access so roles can run queries
-GRANT USAGE ON WAREHOUSE COMPUTE_WH TO ROLE lab_data_engineer;
-GRANT USAGE ON WAREHOUSE COMPUTE_WH TO ROLE lab_analyst;""",
+GRANT USAGE ON WAREHOUSE DEFAULT_WH TO ROLE lab_data_engineer;
+GRANT USAGE ON WAREHOUSE DEFAULT_WH TO ROLE lab_analyst;""",
     note="Creates a role hierarchy where lab_analyst is a subset of lab_data_engineer.",
 )
 
