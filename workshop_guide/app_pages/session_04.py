@@ -164,13 +164,21 @@ st.markdown("#### :material/explore: 4.4 — Explore the Semantic View in Snowsi
 
 with st.container(border=True):
     st.markdown("""
-Open the semantic view in the Snowsight UI to browse its dimensions, facts, and metrics.
+The semantic view should already be open in your workspace from the previous step. Click the **QUOTES_SV.sv.yaml** tab in your workspace to view it.
 
-1. In the Snowsight left nav, click **Analyst -> Semantic Views**
-2. Find **QUOTES_SV** in the `ICEBERG_LAB_DB.ANALYTICS` schema and click to open it
-3. Browse the **Dimensions** tab -- you should see 7 dimensions including `quote_product`, `postalcode`, and `maritalstatus` with their synonyms
-4. Browse the **Facts & Metrics** tab -- you should see 4 facts and 4 pre-defined metrics including `total_quotes` and `avg_total_premium`
+1. Browse the **Dimensions** tab -- you should see 7 dimensions including `quote_product`, `postalcode`, and `maritalstatus` with their synonyms
+2. Browse the **Facts & Metrics** tab -- you should see 4 facts and 4 pre-defined metrics including `total_quotes` and `avg_total_premium`
     """)
+
+    with st.expander("If the semantic view didn't open automatically"):
+        st.markdown("""
+1. In the Snowsight right-side panel, navigate to **AI & ML -> Analyst**
+2. Select the database **ICEBERG_LAB_DB** and schema **ANALYTICS**
+3. Click the semantic view **QUOTES_SV**
+4. When prompted with **Open semantic view in workspaces**, keep the defaults and click **Open**
+
+This will open the semantic view in your workspace.
+        """)
 
 st.write("")
 
