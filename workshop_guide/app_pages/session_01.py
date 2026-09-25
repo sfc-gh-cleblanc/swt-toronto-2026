@@ -54,6 +54,19 @@ The AWS infrastructure has been **pre-configured** for you. You do not need an A
 
 st.markdown("---")
 
+st.markdown("#### Switch to the ACCOUNTADMIN role")
+with st.container(border=True):
+    st.markdown("""
+The **ACCOUNTADMIN** role is required to create external volumes and catalog integrations.
+
+1. Click your username **USER** in the bottom-left corner.
+2. Under **Switch Role**, click **ATTENDEE_ROLE** to expand the role list.
+3. Select **ACCOUNTADMIN**.
+""")
+    st.image(str(_STATIC / "switch_role_accountadmin.png"), caption="Switch to the ACCOUNTADMIN role")
+
+st.markdown("---")
+
 st.markdown("#### Open your workspace")
 with st.container(border=True):
     st.markdown("""
