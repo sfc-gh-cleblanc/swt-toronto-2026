@@ -106,13 +106,13 @@ render_coco_prompt(
     sql="""\
 SELECT
     surname,
-    postcodedistrict,
+    postalcode,
     COUNT(*)                           AS quote_count,
     MIN(quotedate)                     AS first_quote,
     MAX(quotedate)                     AS last_quote,
     ROUND(AVG(totalpremiumpayable), 2) AS avg_premium
 FROM my_iceberg_db."iceberg"."quotes"
-GROUP BY surname, postcodedistrict
+GROUP BY surname, postalcode
 HAVING COUNT(*) > 1
 ORDER BY quote_count DESC
 LIMIT 20;""",
@@ -124,7 +124,7 @@ Customers who request **multiple quotes** in a short window are often comparison
 signal for potential churn in the insurance industry.
 
 This pattern is especially relevant for Canadian insurers where provincial regulations
-affect pricing and customers frequently shop across providers. The `postcodedistrict` column
+affect pricing and customers frequently shop across providers. The `postalcode` column
 helps identify geographic clusters of high-frequency quoters.
 """)
 

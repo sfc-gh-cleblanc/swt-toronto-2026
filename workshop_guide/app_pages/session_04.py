@@ -58,7 +58,7 @@ render_coco_prompt(
     "maritalstatus (synonyms: marital status, married, single), "
     "homeownerind (synonyms: homeowner, owns home, property owner), "
     "sex (synonyms: gender, customer gender), "
-    "postcodedistrict (synonyms: district, location, area, region, province, postal district), "
+    "postalcode (synonyms: postal code, zip code, location, area, region, FSA), "
     "previnsr (synonyms: previous insurer, prior insurer, prior provider).\n\n"
     "Metrics: total_quotes (COUNT of quote_record), avg_total_premium (AVG totalpremiumpayable), "
     "avg_risk_premium (AVG newriskpremium), total_premium_volume (SUM totalpremiumpayable).\n\n"
@@ -86,7 +86,7 @@ CREATE OR REPLACE SEMANTIC VIEW quotes_sv
     quotes.MARITALSTATUS    as MARITALSTATUS    with synonyms=('marital status', 'married', 'single')              comment='Customer marital status',
     quotes.HOMEOWNERIND     as HOMEOWNERIND     with synonyms=('homeowner', 'owns home', 'property owner')         comment='Whether customer owns home',
     quotes.SEX              as SEX              with synonyms=('gender', 'customer gender')                        comment='Customer gender',
-    quotes.POSTCODEDISTRICT as POSTCODEDISTRICT with synonyms=('district', 'location', 'area', 'region', 'province', 'postal district') comment='Customer postcode district',
+    quotes.POSTALCODE       as POSTALCODE       with synonyms=('postal code', 'zip code', 'location', 'area', 'region', 'FSA')    comment='Customer postal code',
     quotes.PREVINSR         as PREVINSR         with synonyms=('previous insurer', 'prior insurer', 'prior provider')                   comment='Previous insurance provider'
   )
   METRICS (
@@ -108,7 +108,7 @@ reference name `quotes`.
 - **FACTS** — numeric columns used for aggregation (premiums, tax, record count)
 - **DIMENSIONS** — categorical columns for grouping and filtering (product, date, status)
 - **METRICS** — pre-defined calculations (COUNT, AVG, SUM) that the AI can use directly
-- **SYNONYMS** — alternative names the AI recognizes (e.g. "province" maps to postcodedistrict)
+- **SYNONYMS** -- alternative names the AI recognizes (e.g. "postal code" maps to postalcode)
 
 The `quote_record as 1` fact is a pattern for creating a countable record marker — every row
 contributes 1 to the `total_quotes` metric.
@@ -168,7 +168,7 @@ Open the semantic view in the Snowsight UI to browse its dimensions, facts, and 
 
 1. In the Snowsight left nav, click **Analyst -> Semantic Views**
 2. Find **QUOTES_SV** in the `ICEBERG_LAB_DB.ANALYTICS` schema and click to open it
-3. Browse the **Dimensions** tab -- you should see 7 dimensions including `quote_product`, `postcodedistrict`, and `maritalstatus` with their synonyms
+3. Browse the **Dimensions** tab -- you should see 7 dimensions including `quote_product`, `postalcode`, and `maritalstatus` with their synonyms
 4. Browse the **Facts & Metrics** tab -- you should see 4 facts and 4 pre-defined metrics including `total_quotes` and `avg_total_premium`
     """)
 
@@ -182,7 +182,7 @@ render_key_concepts([
     },
     {
         "term": "Synonyms",
-        "definition": "Alternative names for dimensions that the AI recognizes. For example, 'province' and 'postal district' both map to the postcodedistrict column. Improves natural language query accuracy.",
+        "definition": "Alternative names for dimensions that the AI recognizes. For example, 'postal code' and 'FSA' both map to the postalcode column. Improves natural language query accuracy.",
     },
     {
         "term": "Cortex Analyst",
