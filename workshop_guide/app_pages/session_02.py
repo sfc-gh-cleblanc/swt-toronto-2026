@@ -66,7 +66,7 @@ with st.container(border=True):
         ":material/lightbulb: **Tip: opening CoCo**  "
         "Click the blue **CoCo button** in the bottom-right corner of the Snowsight window to open the CoCo chat panel."
     )
-    st.image(str(_STATIC / "coco_button.png"), width=300)
+    st.image(str(_STATIC / "coco_button.png"), width=150)
 
 render_explanation("What just happened?", """
 You queried an **Apache Iceberg table stored in AWS S3** directly from Snowflake — without copying

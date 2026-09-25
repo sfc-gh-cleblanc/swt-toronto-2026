@@ -63,7 +63,7 @@ The **ACCOUNTADMIN** role is required to create external volumes and catalog int
 2. Under **Switch Role**, click **ATTENDEE_ROLE** to expand the role list.
 3. Select **ACCOUNTADMIN**.
 """)
-    st.image(str(_STATIC / "switch_role_accountadmin.png"), caption="Switch to the ACCOUNTADMIN role")
+    st.image(str(_STATIC / "switch_role_accountadmin.png"), caption="Switch to the ACCOUNTADMIN role", width=350)
 
 st.markdown("---")
 
@@ -80,9 +80,9 @@ All of the SQL in this session will be run inside this `setup.sql` page.
 """)
     col_nav, col_add = st.columns(2)
     with col_nav:
-        st.image(str(_STATIC / "projects_workspaces_nav.png"), caption="Projects -> Workspaces in the left navigation")
+        st.image(str(_STATIC / "projects_workspaces_nav.png"), caption="Projects -> Workspaces in the left navigation", width=350)
     with col_add:
-        st.image(str(_STATIC / "add_sql_file.png"), caption="My Workspace -> + Add new -> SQL file")
+        st.image(str(_STATIC / "add_sql_file.png"), caption="My Workspace -> + Add new -> SQL file", width=350)
 
 st.markdown("---")
 
@@ -109,7 +109,7 @@ with st.container(border=True):
         "Click the **Run** button at the top left of the editor to execute your SQL. "
         "You can also use the keyboard shortcut **\u2318 + Return** (Mac) or **Ctrl + Enter** (Windows)."
     )
-    st.image(str(_STATIC / "run_button.png"), width=400)
+    st.image(str(_STATIC / "run_button.png"), width=200)
 
 render_explanation("What is an External Volume?", """
 An External Volume is the **credential and location layer** between Snowflake and your cloud object storage.

@@ -22,29 +22,41 @@ with st.container(border=True):
     st.markdown(
         "Enter your **email address** and click **Register**."
     )
-    st.image(str(_STATIC / "hol_signup.png"), caption="Enter your email address and click Register")
+    with st.expander("Show screenshot"):
+        st.image(str(_STATIC / "hol_signup.png"), caption="Enter your email address and click Register")
 
 st.write("")
 
 st.markdown("#### Step 2: Check your email")
 with st.container(border=True):
     st.markdown(
-        "Check your email for your **account info**, then click **Sign in** with your info."
+        "Check your email for your **account info** and **password**."
     )
-    st.image(str(_STATIC / "hol_signup2.png"), caption="Check your email for account info, then sign in")
+    with st.expander("Show screenshot"):
+        st.image(str(_STATIC / "hol_signup2.png"), caption="Check your email for account info and password")
 
 st.write("")
 
-st.markdown("#### Step 3: Open Snowflake")
+st.markdown("#### Step 3: Sign in to DataOps.live")
+with st.container(border=True):
+    st.markdown(
+        "Sign in to DataOps.live with your **email** and the **password** provided in the email you just received. "
+        "This will take you to a screen with the link to access your Snowflake account."
+    )
+
+st.write("")
+
+st.markdown("#### Step 4: Open Snowflake")
 with st.container(border=True):
     st.markdown(
         "When you see the section for **event instructions**, click the **URL** to open Snowflake."
     )
-    st.image(str(_STATIC / "hol_signup3.png"), caption="Click the URL in the event instructions to open Snowflake")
+    with st.expander("Show screenshot"):
+        st.image(str(_STATIC / "hol_signup3.png"), caption="Click the URL in the event instructions to open Snowflake")
 
 st.write("")
 
-st.markdown("#### Step 4: Log in to Snowflake")
+st.markdown("#### Step 5: Log in to Snowflake")
 with st.container(border=True):
     st.markdown(
         "Log in to Snowflake using the identified **username** and **password**:"
@@ -53,7 +65,7 @@ with st.container(border=True):
 
 st.write("")
 
-st.markdown("#### Step 5: Set up multi-factor authentication")
+st.markdown("#### Step 6: Set up multi-factor authentication")
 with st.container(border=True):
     st.markdown(
         "You will be asked to create a **multi-factor authentication** method. "
@@ -67,7 +79,8 @@ with st.container(border=True):
     st.markdown(
         "Once logged in you will be presented with the Snowflake home screen and you are ready to start the hands-on lab!"
     )
-    st.image(str(_STATIC / "snowflake_home.png"), caption="Snowflake Home screen -- you're ready to begin")
+    with st.expander("Show screenshot"):
+        st.image(str(_STATIC / "snowflake_home.png"), caption="Snowflake Home screen -- you're ready to begin")
 
     st.markdown("""
 No additional software, CLI tools, or AWS credentials are needed -- the AWS infrastructure
