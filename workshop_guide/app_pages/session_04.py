@@ -160,7 +160,7 @@ The AI will use these definitions to translate natural language questions into a
 
 st.markdown("---")
 
-st.markdown("#### :material/explore: 4.4 — Explore the Semantic View in Snowsight")
+st.markdown("#### :material/explore: 4.4 — Explore the Semantic View in the Workspace")
 
 with st.container(border=True):
     st.markdown("""
