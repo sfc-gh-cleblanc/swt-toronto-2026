@@ -1,4 +1,5 @@
 import streamlit as st
+from pathlib import Path
 from components import (
     render_session_header,
     render_coco_prompt,
@@ -7,6 +8,8 @@ from components import (
     render_key_concepts,
     render_what_you_built,
 )
+
+_STATIC = Path(__file__).parent.parent / "static"
 
 render_session_header(
     2,
@@ -57,6 +60,13 @@ SELECT * FROM my_iceberg_db."iceberg"."quotes" LIMIT 10;
 SELECT COUNT(*) AS total_quotes FROM my_iceberg_db."iceberg"."quotes";""",
     note="You should see approximately 56,000 quote records.",
 )
+
+with st.container(border=True):
+    st.markdown(
+        ":material/lightbulb: **Tip: opening CoCo**  "
+        "Click the blue **CoCo button** in the bottom-right corner of the Snowsight window to open the CoCo chat panel."
+    )
+    st.image(str(_STATIC / "coco_button.png"), width=300)
 
 render_explanation("What just happened?", """
 You queried an **Apache Iceberg table stored in AWS S3** directly from Snowflake — without copying
