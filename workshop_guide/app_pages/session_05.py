@@ -114,7 +114,7 @@ with st.container(border=True):
     st.markdown("""
 Open your agent in Agent Studio to review its configuration and test it with natural language questions.
 
-1. In the Snowsight left nav, click **Agent Studio**
+1. In the Snowsight left navigation panel, select **AI & ML** and then **Agent Studio**
 2. Find **Canadian Insurance Quotes Analyst** in the list and click to open it
 3. Optionally, review the agent specification that CoCo generated in the previous step -- you can see the tool configuration, semantic view binding, and agent instructions
 4. Click the **Preview** tab to open the chat interface
