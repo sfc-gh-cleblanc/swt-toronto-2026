@@ -166,53 +166,6 @@ GRANT SELECT ON SEMANTIC VIEW iceberg_lab_db.analytics.quotes_sv TO ROLE lab_dat
 
 st.write("")
 
-render_coco_prompt(
-    "4.3",
-    "Verify Semantic View",
-    "Verify the semantic view by running SHOW SEMANTIC VIEWS, SHOW SEMANTIC METRICS, and SHOW SEMANTIC DIMENSIONS "
-    "for iceberg_lab_db.analytics.quotes_sv.",
-    sql="""\
-SHOW SEMANTIC VIEWS IN SCHEMA iceberg_lab_db.analytics;
-SHOW SEMANTIC METRICS IN iceberg_lab_db.analytics.quotes_sv;
-SHOW SEMANTIC DIMENSIONS IN iceberg_lab_db.analytics.quotes_sv;""",
-    note="You should see 4 metrics and 7 dimensions.",
-)
-
-render_explanation("Verifying your semantic view", """
-The three SHOW commands confirm:
-
-1. **SHOW SEMANTIC VIEWS** — the `quotes_sv` view exists in `iceberg_lab_db.analytics`
-2. **SHOW SEMANTIC METRICS** — all 4 pre-defined metrics are registered
-3. **SHOW SEMANTIC DIMENSIONS** — all 7 dimensions with their synonyms are registered
-
-Once verified, the semantic view is ready to power the Cortex Agent in Session 5.
-The AI will use these definitions to translate natural language questions into accurate SQL.
-""")
-
-st.markdown("---")
-
-st.markdown("#### :material/explore: 4.4 — Explore the Semantic View in the Workspace")
-
-with st.container(border=True):
-    st.markdown("""
-The semantic view should already be open in your workspace from the previous step. Click the **QUOTES_SV.sv.yaml** tab in your workspace to view it.
-
-1. Browse the **Dimensions** tab -- you should see 7 dimensions including `quote_product`, `postalcode`, and `maritalstatus` with their synonyms
-2. Browse the **Facts & Metrics** tab -- you should see 4 facts and 4 pre-defined metrics including `total_quotes` and `avg_total_premium`
-    """)
-
-    with st.expander("If the semantic view didn't open automatically"):
-        st.markdown("""
-1. In the Snowsight right-side panel, navigate to **AI & ML -> Analyst**
-2. Select the database **ICEBERG_LAB_DB** and schema **ANALYTICS**
-3. Click the semantic view **QUOTES_SV**
-4. When prompted with **Open semantic view in workspaces**, keep the defaults and click **Open**
-
-This will open the semantic view in your workspace.
-        """)
-
-st.write("")
-
 
 render_key_concepts([
     {
@@ -230,9 +183,6 @@ render_key_concepts([
 ])
 
 render_what_you_built([
-    "quotes_sv — Semantic View with 4 facts, 7 dimensions, and 4 metrics",
-    "Canadian-friendly synonyms for natural language querying",
+    "quotes_sv — Semantic View with facts, dimensions, and derived metrics",
     "Grants for both lab roles to query via AI",
-    "Verified metrics and dimensions are registered correctly",
-    "Explored the semantic view in Snowsight -- reviewed dimensions, facts, and metrics",
 ])
