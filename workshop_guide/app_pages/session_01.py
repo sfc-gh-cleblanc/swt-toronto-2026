@@ -52,6 +52,27 @@ The AWS infrastructure has been **pre-configured** for you. You do not need an A
 | **IAM Role** | `arn:aws:iam::484577546576:role/sf-lab-shared-role` |
 """)
 
+st.write("")
+
+st.markdown("#### :material/explore: 1.5 — Explore What You Just Created")
+
+with st.container(border=True):
+    st.markdown("""
+Now that your Catalog-Linked Database is synced, explore the table in the Snowsight catalog.
+
+1. In the Snowsight left navigation, select **Catalog -> Explorer**
+2. Expand the tree: **Databases -> MY_ICEBERG_DB -> Tables** and select the **quotes** table
+3. Review the list of columns -- you should see 40 columns of various types (VARCHAR, NUMBER, DATE, etc.)
+4. Click the **Preview** tab to see a sample of the data
+    """)
+
+with st.container(border=True):
+    st.markdown("**Optional: Generate column descriptions with Cortex AI**")
+    st.markdown(
+        "On the **Overview** page for the quotes table, click the **Generate descriptions** button. "
+        "Cortex AI will analyze the data and automatically generate descriptions for each column."
+    )
+
 st.markdown("---")
 
 st.markdown("#### Switch to the ACCOUNTADMIN role")
