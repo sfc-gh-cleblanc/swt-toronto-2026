@@ -62,6 +62,24 @@ Create a semantic view using the Snowsight wizard:
 When the view finishes building, review the structure that was created. Review any **suggestions** that could be added to the view.
     """)
 
+st.write("")
+
+st.markdown("**Add derived metrics with CoCo**")
+with st.container(border=True):
+    st.markdown(
+        "Now use CoCo to add four derived metrics to the semantic view. "
+        "Copy the following prompt and paste it into CoCo:"
+    )
+    render_coco_prompt(
+        "4.1b",
+        "Add Derived Metrics",
+        "Add four derived metrics to QUOTES_SV on the QUOTES_VW table, using inline aggregate expressions:\n\n"
+        "TOTAL_QUOTES: COUNT(QUOTE_RECORD)\n"
+        "AVG_TOTAL_PREMIUM: AVG(TOTALPREMIUMPAYABLE)\n"
+        "AVG_RISK_PREMIUM: AVG(NEWRISKPREMIUM)\n"
+        "TOTAL_PREMIUM_VOLUME: SUM(TOTALPREMIUMPAYABLE)",
+    )
+
 with st.expander("Alternative: create via CoCo prompt"):
     st.markdown(
         "Copy this prompt and paste it into CoCo to create the semantic view with specific facts, dimensions, metrics, and synonyms."
