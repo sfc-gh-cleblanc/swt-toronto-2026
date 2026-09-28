@@ -46,24 +46,44 @@ masked values as they would in direct SQL.
 
 st.write("")
 
-render_coco_prompt(
-    "4.1",
-    "Create Semantic View",
-    "Create a new worksheet for the semantic view. "
-    "In iceberg_lab_db.analytics, create a semantic view called quotes_sv on top of quotes_vw with uuid as the primary key.\n\n"
-    "Facts: newriskpremium (risk premium), totalpremiumpayable (total premium), iptamount (insurance premium tax), "
-    "and a quote_record fact set to 1 for counting.\n\n"
-    "Dimensions: quote_product (synonyms: product type, insurance product, cover type, policy type), "
-    "quotedate (synonyms: quote date, date, when requested), "
-    "maritalstatus (synonyms: marital status, married, single), "
-    "homeownerind (synonyms: homeowner, owns home, property owner), "
-    "sex (synonyms: gender, customer gender), "
-    "postalcode (synonyms: postal code, zip code, location, area, region, FSA), "
-    "previnsr (synonyms: previous insurer, prior insurer, prior provider).\n\n"
-    "Metrics: total_quotes (COUNT of quote_record), avg_total_premium (AVG totalpremiumpayable), "
-    "avg_risk_premium (AVG newriskpremium), total_premium_volume (SUM totalpremiumpayable).\n\n"
-    "Add a comment: 'Insurance quote analytics on Iceberg data in AWS Glue via Catalog-Linked Database'.",
-    sql="""\
+st.markdown("#### :material/schema: 4.1 — Create Semantic View")
+
+with st.container(border=True):
+    st.markdown("""
+Create a semantic view using the Snowsight wizard:
+
+1. In the left navigation panel, select **AI & ML -> Analyst**
+2. Click the **Create semantic view** button to start the wizard
+3. **Provide context** -- skip this page (click **Next**)
+4. **Name** -- enter `Quotes_sv`, then click **Next**
+5. **Select tables** -- select the **quotes_vw** view, then click **Next**
+6. **Select columns** -- click **Select all** to include all columns, then click **Create**
+
+When the view finishes building, review the structure that was created. Review any **suggestions** that could be added to the view.
+    """)
+
+with st.expander("Alternative: create via CoCo prompt"):
+    st.markdown(
+        "Copy this prompt and paste it into CoCo to create the semantic view with specific facts, dimensions, metrics, and synonyms."
+    )
+    render_coco_prompt(
+        "4.1",
+        "Create Semantic View",
+        "Create a new worksheet for the semantic view. "
+        "In iceberg_lab_db.analytics, create a semantic view called quotes_sv on top of quotes_vw with uuid as the primary key.\n\n"
+        "Facts: newriskpremium (risk premium), totalpremiumpayable (total premium), iptamount (insurance premium tax), "
+        "and a quote_record fact set to 1 for counting.\n\n"
+        "Dimensions: quote_product (synonyms: product type, insurance product, cover type, policy type), "
+        "quotedate (synonyms: quote date, date, when requested), "
+        "maritalstatus (synonyms: marital status, married, single), "
+        "homeownerind (synonyms: homeowner, owns home, property owner), "
+        "sex (synonyms: gender, customer gender), "
+        "postalcode (synonyms: postal code, zip code, location, area, region, FSA), "
+        "previnsr (synonyms: previous insurer, prior insurer, prior provider).\n\n"
+        "Metrics: total_quotes (COUNT of quote_record), avg_total_premium (AVG totalpremiumpayable), "
+        "avg_risk_premium (AVG newriskpremium), total_premium_volume (SUM totalpremiumpayable).\n\n"
+        "Add a comment: 'Insurance quote analytics on Iceberg data in AWS Glue via Catalog-Linked Database'.",
+        sql="""\
 USE ROLE ACCOUNTADMIN;
 USE DATABASE iceberg_lab_db;
 USE SCHEMA analytics;
@@ -96,7 +116,7 @@ CREATE OR REPLACE SEMANTIC VIEW quotes_sv
     quotes.total_premium_volume as SUM(quotes.TOTALPREMIUMPAYABLE)  comment='Total premium volume'
   )
   comment='Insurance quote analytics on Iceberg data in AWS Glue via Catalog-Linked Database';""",
-)
+    )
 
 render_explanation("How the semantic view works", """
 The semantic view uses a **table alias mapping**: `quotes as quotes_vw` — where `quotes` is the
