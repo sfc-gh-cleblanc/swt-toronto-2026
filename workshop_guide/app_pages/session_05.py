@@ -43,18 +43,36 @@ policies are enforced automatically based on the querying role.
 
 st.write("")
 
-render_coco_prompt(
-    "5.1",
-    "Create Cortex Agent",
-    "Create a new worksheet for the Cortex Agent. "
-    "Create a Cortex Agent called quotes_agent in iceberg_lab_db.analytics with display name "
-    "'Canadian Insurance Quotes Analyst'. It should use a cortex_analyst_text_to_sql tool called "
-    "'Query Insurance Quotes' backed by the quotes_sv semantic view.\n\n"
-    "Agent instructions: Answer questions about insurance quote data. Use the quotes tool to query "
-    "premium amounts, product types, homeowner status, marital status, and postcode district. "
-    "Summarize results clearly with a Canadian perspective -- reference provinces and regional patterns "
-    "where relevant. Format currency values in CAD. Suggest follow-up questions to deepen analysis.",
-    sql="""\
+st.markdown("#### :material/smart_toy: 5.1 — Create Cortex Agent")
+
+with st.container(border=True):
+    st.markdown("""
+Create an agent using the Agent Studio UI:
+
+1. In the left navigation panel, select **AI & ML -> Agent Studio** and click **Create agent**
+2. In the create agent window, select the database and schema **ICEBERG_LAB_DB.ANALYTICS**, name the agent `quotes_agent` with display name `Canadian Insurance Quotes Analyst`, then click **Create agent**
+3. When the agent window is displayed, click **Configuration**. Set the description to: `Answer questions about insurance quote data.`
+4. Click **Tool** to configure the agent's data access. In the **Query structured data** section, click **+ Add semantic view**. Select database **ICEBERG_LAB_DB**, schema **ANALYTICS**, and view **Quotes_sv**. Give it a readable name such as `quotes`. Click **Generate description** to auto-populate a comprehensive description, then click **Add**
+5. Click **Access** and grant access to the **lab_analyst** and **lab_data_engineer** roles using **+ Add role**
+6. Click **Save**
+    """)
+
+with st.expander("Alternative: create via CoCo prompt"):
+    st.markdown(
+        "Copy this prompt and paste it into CoCo to create the agent with SQL."
+    )
+    render_coco_prompt(
+        "5.1",
+        "Create Cortex Agent",
+        "Create a new worksheet for the Cortex Agent. "
+        "Create a Cortex Agent called quotes_agent in iceberg_lab_db.analytics with display name "
+        "'Canadian Insurance Quotes Analyst'. It should use a cortex_analyst_text_to_sql tool called "
+        "'Query Insurance Quotes' backed by the quotes_sv semantic view.\n\n"
+        "Agent instructions: Answer questions about insurance quote data. Use the quotes tool to query "
+        "premium amounts, product types, homeowner status, marital status, and postcode district. "
+        "Summarize results clearly with a Canadian perspective -- reference provinces and regional patterns "
+        "where relevant. Format currency values in CAD. Suggest follow-up questions to deepen analysis.",
+        sql="""\
 USE ROLE ACCOUNTADMIN;
 USE DATABASE iceberg_lab_db;
 USE SCHEMA analytics;
@@ -83,8 +101,8 @@ FROM SPECIFICATION $$
   }
 }
 $$;""",
-    note="The agent uses the semantic view to translate natural language into SQL.",
-)
+        note="The agent uses the semantic view to translate natural language into SQL.",
+    )
 
 render_explanation("How the agent works", """
 The Cortex Agent is a first-class Snowflake object that:
