@@ -126,19 +126,15 @@ st.write("")
 
 st.markdown("---")
 
-st.markdown("#### :material/smart_toy: 5.2 -- Test Your Agent in Agent Studio")
+st.markdown("#### :material/smart_toy: 5.2 -- Test Your Agent in Snowflake CoWork")
 
 with st.container(border=True):
     st.markdown("""
-Open your agent in Agent Studio to review its configuration and test it with natural language questions.
+Your agent should already be open in Agent Studio from the previous step.
 
-1. In the Snowsight left navigation panel, select **AI & ML** and then **Agent Studio**
-2. Find **Canadian Insurance Quotes Analyst** in the list and click to open it
-3. Optionally, review the agent specification that CoCo generated in the previous step -- you can see the tool configuration, semantic view binding, and agent instructions
-4. Click the **Preview** tab to open the chat interface
-5. Type a question and press Enter -- the agent translates it into SQL against your Iceberg data
-
-You can test the agent directly in the Preview tab, or click **Preview in Snowflake CoWork** for the full collaborative experience.
+1. Click **Preview**, then click **Preview in Snowflake CoWork**
+2. A new window will open -- enter your login credentials if prompted (username `USER`, password `sn0wf@ll`)
+3. In the agent prompt, enter the sample questions below to test the agent
     """)
 
 st.write("")
@@ -165,13 +161,14 @@ st.write("")
 st.markdown("##### Test masking enforcement")
 with st.container(border=True):
     st.markdown("""
-Switch between roles to see how masking affects agent responses:
+Switch between roles to see how masking affects agent responses. In Snowflake CoWork:
 
-1. Click your username **USER** in the bottom-left corner, hover over **Switch Role** near the top of the menu, then select `lab_analyst` from the list
-2. Ask: *"Show me the customers with the highest total premium"*
-3. Notice that `surname`, `email`, `phonenumber`, and `dateofbirth` are **masked**
-4. Switch to `lab_data_engineer` using the same method and ask the same question
-5. Now you see **full PII values**
+1. Click your name (**EVENT USER**) in the bottom-left corner, then click **Settings**
+2. In the **Account** section, click **Role and warehouse** to change your role
+3. Switch to `lab_analyst` and ask: *"Show me the customers with the highest total premium"*
+4. Notice that `surname`, `email`, `phonenumber`, and `dateofbirth` are **masked**
+5. Switch to `lab_data_engineer` using the same method and ask the same question
+6. Now you see **full PII values**
 
 The same Iceberg data, the same agent, the same question -- governance controls who sees what,
 all the way from S3 through the AI response.
