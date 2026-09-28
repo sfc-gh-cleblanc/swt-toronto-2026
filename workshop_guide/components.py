@@ -50,7 +50,7 @@ def render_sql_block(block_id: str, title: str, sql: str, note: str = ""):
             st.caption(note)
 
 
-def render_coco_prompt(block_id: str, title: str, prompt_text: str, sql: str = "", note: str = ""):
+def render_coco_prompt(block_id: str, title: str, prompt_text: str, sql: str = "", note: str = "", show_run_tip: bool = True):
     key = _prompt_key(block_id)
     cb_key = f"_cb_{key}"
     store = _done_store()
@@ -67,10 +67,11 @@ def render_coco_prompt(block_id: str, title: str, prompt_text: str, sql: str = "
         if sql:
             with st.expander(":material/code: SQL that CoCo will generate", expanded=False):
                 st.code(sql, language="sql", wrap_lines=True)
-        st.markdown(
-            "Place your cursor on each SQL statement in the worksheet and press "
-            "`Ctrl + Enter` (Windows/Linux) or `Cmd + Return` (Mac) to run it interactively and see the results."
-        )
+        if show_run_tip:
+            st.markdown(
+                "Place your cursor on each SQL statement in the worksheet and press "
+                "`Ctrl + Enter` (Windows/Linux) or `Cmd + Return` (Mac) to run it interactively and see the results."
+            )
         if note:
             st.caption(note)
 

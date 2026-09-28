@@ -78,6 +78,8 @@ with st.container(border=True):
         "AVG_TOTAL_PREMIUM: AVG(TOTALPREMIUMPAYABLE)\n"
         "AVG_RISK_PREMIUM: AVG(NEWRISKPREMIUM)\n"
         "TOTAL_PREMIUM_VOLUME: SUM(TOTALPREMIUMPAYABLE)",
+        show_run_tip=False,
+        note="When CoCo completes, review the new metrics in the semantic view and click Save.",
     )
 
 with st.expander("Alternative: create via CoCo prompt"):
