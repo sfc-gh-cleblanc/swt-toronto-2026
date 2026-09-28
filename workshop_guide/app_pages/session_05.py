@@ -101,6 +101,7 @@ FROM SPECIFICATION $$
   }
 }
 $$;""",
+        show_run_tip=False,
         note="The agent uses the semantic view to translate natural language into SQL.",
     )
 
