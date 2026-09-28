@@ -291,7 +291,8 @@ render_coco_prompt(
     "Verify Masking",
     "Verify the masking policies work by querying iceberg_lab_db.analytics.quotes_vw as two different roles. "
     "First switch to lab_analyst and select uuid, surname, email, phonenumber, dateofbirth, totalpremiumpayable (limit 5). "
-    "Then switch to lab_data_engineer and run the same query. Show me the difference.",
+    "Then switch to lab_data_engineer and run the same query. Show me the difference. "
+    "Apply the SQL scripts to the worksheet for future reference.",
     sql="""\
 -- As analyst: PII is masked
 USE ROLE lab_analyst;
